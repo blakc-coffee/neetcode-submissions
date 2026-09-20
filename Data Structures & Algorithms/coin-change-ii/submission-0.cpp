@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int change(int amount, vector<int>& coins) {
+        vector<int> dp(amount+1,0);
+        dp[0]=1;
+
+        /*for(int i=0;i<=amount;i++){
+           // bool used (max([coins])+1,false);
+            for(int c : coins){
+                if(i-c>=0){
+                dp[i]+=dp[i-c];
+                //used[c+1]=true;
+                //used[i-(c+1)]=true;
+                }
+                
+            }
+        } */
+
+        for(int c: coins){
+            for(int i=0;i<=amount;i++){
+                if(i-c>=0)
+                dp[i]+=dp[i-c];
+            }
+        }
+
+        return dp[amount];
+        
+    }
+};
